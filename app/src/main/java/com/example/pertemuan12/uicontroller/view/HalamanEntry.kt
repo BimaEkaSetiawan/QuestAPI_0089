@@ -66,7 +66,13 @@ fun EntrySiswasScreen(
                     }
                 }
             },
-
+            modifier = Modifier
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+                .fillMaxWidth()
+        )
+    }
+}
 
 @Composable
 fun EntrySiswaBody(
