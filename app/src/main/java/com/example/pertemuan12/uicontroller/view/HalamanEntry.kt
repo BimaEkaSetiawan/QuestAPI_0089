@@ -20,7 +20,6 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -67,13 +66,6 @@ fun EntrySiswaBody(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_large)),
         modifier = modifier.padding(dimensionResource(id = R.dimen.padding_medium))
     ) {
-        if (uiStateSiswa.errorMessage != null) {
-            Text(
-                text = uiStateSiswa.errorMessage,
-                color = Color.Red,
-                modifier = Modifier.fillMaxWidth()
-            )
-        }
         FormTambahSiswa(
             detailsSiswa = uiStateSiswa.detailsSiswa,
             onValueChange = onSiswaValueChange,
@@ -105,6 +97,14 @@ fun FormTambahSiswa(
             value = detailsSiswa.nama,
             onValueChange = { onValueChange(detailsSiswa.copy(nama = it)) },
             label = { Text(stringResource(R.string.nama)) },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = enabled,
+            singleLine = true
+        )
+        OutlinedTextField(
+            value = detailsSiswa.alamat,
+            onValueChange = { onValueChange(detailsSiswa.copy(alamat = it)) },
+            label = { Text(stringResource(R.string.alamat)) },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
             singleLine = true
