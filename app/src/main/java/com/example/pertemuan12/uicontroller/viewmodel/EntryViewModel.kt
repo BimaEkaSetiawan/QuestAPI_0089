@@ -1,6 +1,8 @@
 package com.example.pertemuan12.uicontroller.viewmodel
 
 
+import com.example.pertemuan12.modeldata.DataSiswa
+
 
 data class UIStateSiswa(
     val detailsSiswa: DetailSiswa = DetailSiswa(),
