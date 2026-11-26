@@ -25,7 +25,14 @@ class EntryViewModel(private val repositoryDataSiswa: RepositoryDataSiswa) : Vie
             UIStateSiswa(detailsSiswa = detailsSiswa, isEntryValid = validasiInput(detailsSiswa), errorMessage = null)
     }
 
+    suspend fun addSiswa(): Boolean {
+        val isValid = validasiInput()
+        if (isValid) {
+            try {
 
+        return false
+    }
+}
 
 data class UIStateSiswa(
     val detailsSiswa: DetailSiswa = DetailSiswa(),
