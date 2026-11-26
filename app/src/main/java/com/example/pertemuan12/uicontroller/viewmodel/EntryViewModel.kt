@@ -20,6 +20,11 @@ class EntryViewModel(private val repositoryDataSiswa: RepositoryDataSiswa) : Vie
         return valid
     }
 
+    fun updateUiState(detailsSiswa: DetailSiswa) {
+        uiStateSiswa =
+            UIStateSiswa(detailsSiswa = detailsSiswa, isEntryValid = validasiInput(detailsSiswa), errorMessage = null)
+    }
+
 
 
 data class UIStateSiswa(
