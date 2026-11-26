@@ -29,7 +29,26 @@ class EntryViewModel(private val repositoryDataSiswa: RepositoryDataSiswa) : Vie
         val isValid = validasiInput()
         if (isValid) {
             try {
-
+                val dataSiswa = uiStateSiswa.detailsSiswa.toDataSiswa()
+                Log.d("EntryViewModel", "Mengirim data: $dataSiswa")
+                val sip: Response<Void> = repositoryDataSiswa.postDataSiswa(dataSiswa)
+                Log.d("EntryViewModel", "Response Code: ${sip.code()}, isSuccessful: ${sip.isSuccessful}")
+                if (sip.isSuccessful) {
+                    return true
+                } else {
+                    val errorMsg = sip.errorBody()?.string() ?: "Gagal (Kode: ${sip.code()})"
+                    Log.e("EntryViewModel", "Error Body: $errorMsg")
+                    uiStateSiswa = uiStateSiswa.copy(errorMessage = errorMsg)
+                    return false
+                }
+            } catch (e: Exception) {
+                Log.e("EntryViewModel", "Exception", e)
+                uiStateSiswa = uiStateSiswa.copy(errorMessage = e.localizedMessage ?: "Terjadi kesalahan jaringan")
+                return false
+            }
+        } else {
+            uiStateSiswa = uiStateSiswa.copy(errorMessage = "Mohon lengkapi semua field!")
+        }
         return false
     }
 }
