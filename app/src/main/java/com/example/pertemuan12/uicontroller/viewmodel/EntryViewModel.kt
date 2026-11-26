@@ -13,6 +13,13 @@ class EntryViewModel(private val repositoryDataSiswa: RepositoryDataSiswa) : Vie
     var uiStateSiswa by mutableStateOf(UIStateSiswa())
         private set
 
+    private fun validasiInput(uiState: DetailSiswa = uiStateSiswa.detailsSiswa): Boolean {
+        val valid = with(uiState) {
+            nama.isNotBlank() && alamat.isNotBlank() && telpon.isNotBlank()
+        }
+        return valid
+    }
+
 
 
 data class UIStateSiswa(
