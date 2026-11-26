@@ -53,6 +53,19 @@ fun EntrySiswasScreen(
             )
         }
     ) { innerPadding ->
+        EntrySiswaBody(
+            uiStateSiswa = viewModel.uiStateSiswa,
+            onSiswaValueChange = viewModel::updateUiState,
+            onSaveClick = {
+                Log.d("HalamanEntry", "Tombol Simpan diklik oleh user")
+                coroutineScope.launch {
+                    val success = viewModel.addSiswa()
+                    Log.d("HalamanEntry", "Hasil addSiswa(): $success")
+                    if (success) {
+                        navigateBack()
+                    }
+                }
+            },
 
 
 @Composable
